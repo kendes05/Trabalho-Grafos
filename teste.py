@@ -1,11 +1,12 @@
 from graph import Graph
 from dfs import DepthFirstSearch
 
-g = Graph()
+g = Graph(4)
 
-g.add_edge(10, 4)
-g.add_edge(4, 2)
-g.add_edge(10, 2)
+g.add_edge(0,10,1,4)
+g.add_edge(1,4, 2,2)
+g.add_edge(0,10,2, 2)
+g.add_edge(3,10,0,10)
 
 
 print(g)

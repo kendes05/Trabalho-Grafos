@@ -36,26 +36,30 @@ from bag import Bag
 
 class Graph:
 
-    def __init__(self):
+    def __init__(self, v):
+        self.V = v
         self.E = 0
-        self.adj = {}   
-
-
-    def add_edge(self, v, w):
-        if v not in self.adj:
+        self.adj = {}
+        self.value = {}
+        for v in range(self.V):
             self.adj[v] = Bag()
-        if w not in self.adj:
-            self.adj[w] = Bag()
-
-        self.adj[v].add(w)
-        self.adj[w].add(v)
-        self.E += 1
 
     def __str__(self):
-        s = "%d arestas\n" % (self.E)
-        for v in self.adj:
-            s += "%s: %s\n" % (v, str(self.adj[v]))
+        s = f"{self.V} vertices, {self.E} edges\n"
+        for index_v in self.adj:
+            value_v = self.value.get(index_v, index_v)  # Obtém o valor real ou mantém o índice
+            neighbors = [self.value.get(w, w) for w in self.adj[index_v]]  # Obtém valores reais dos vizinhos
+            s += f"{value_v}: {' '.join(map(str, neighbors))}\n"
         return s
+
+    def add_edge(self,index_v ,v,index_w, w):
+        if w not in self.adj[index_v]:
+            self.adj[index_v].add(index_w)
+            self.adj[index_w].add(index_v)
+            self.value[index_v] = v
+            self.value[index_w] = w
+            self.E += 1
+
     def get_neighbors(self, i, j, rows, cols):
         neighbors = []
         directions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (-1, 1), (1, -1), (1, 1)]
