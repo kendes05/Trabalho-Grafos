@@ -44,21 +44,27 @@ class Graph:
         for v in range(self.V):
             self.adj[v] = Bag()
 
-    def __str__(self):
-        s = f"{self.V} vertices, {self.E} edges\n"
-        for index_v in self.adj:
-            value_v = self.value.get(index_v, index_v)  # Obtém o valor real ou mantém o índice
-            neighbors = [self.value.get(w, w) for w in self.adj[index_v]]  # Obtém valores reais dos vizinhos
-            s += f"{value_v}: {' '.join(map(str, neighbors))}\n"
-        return s
-
-    def add_edge(self,index_v ,v,index_w, w):
-        if w not in self.adj[index_v]:
+    def add_edge(self, index_v, v, index_w, w):
+        if index_v not in self.adj:
+            self.adj[index_v] = Bag()
+        if index_w not in self.adj:
+            self.adj[index_w] = Bag()
+            
+        if index_w not in self.adj[index_v]:
             self.adj[index_v].add(index_w)
             self.adj[index_w].add(index_v)
             self.value[index_v] = v
             self.value[index_w] = w
             self.E += 1
+            
+    def __str__(self):
+        s = f"{self.V} vertices, {self.E} edges\n"
+        for index_v in self.adj:
+            value_v = self.value.get(index_v, index_v)
+            neighbors = [self.value.get(w, w) for w in self.adj[index_v]] 
+            s += f"{value_v}: {' '.join(map(str, neighbors))}\n"
+        return s
+
 
     def get_neighbors(self, i, j, rows, cols):
         neighbors = []
