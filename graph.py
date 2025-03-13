@@ -36,24 +36,26 @@ from bag import Bag
 
 class Graph:
 
-    def __init__(self, v):
-        self.V = v
+    def __init__(self):
         self.E = 0
-        self.adj = {}
-        for v in range(self.V):
-            self.adj[v] = Bag()
+        self.adj = {}   
 
-    def __str__(self):
-        s = "%d vertices, %d edges\n" % (self.V, self.E)
-        s += "\n".join("%d: %s" % (v, " ".join(str(w) for w in self.adj[v])) for v in range(self.V))
-        return s
 
     def add_edge(self, v, w):
-        if w not in self.adj[v]:
-            self.adj[v].add(w)
-            self.adj[w].add(v)
-            self.E += 1
+        if v not in self.adj:
+            self.adj[v] = Bag()
+        if w not in self.adj:
+            self.adj[w] = Bag()
 
+        self.adj[v].add(w)
+        self.adj[w].add(v)
+        self.E += 1
+
+    def __str__(self):
+        s = "%d arestas\n" % (self.E)
+        for v in self.adj:
+            s += "%s: %s\n" % (v, str(self.adj[v]))
+        return s
     def get_neighbors(self, i, j, rows, cols):
         neighbors = []
         directions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (-1, 1), (1, -1), (1, 1)]
