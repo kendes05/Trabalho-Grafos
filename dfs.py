@@ -20,22 +20,27 @@
 class DepthFirstSearch:
 
     def __init__(self, G, s, newValue):
-        self.sourceValue = G.value[s]  # Valor original do ponto inicial
+        self.sourceValue = G.value[s]
         self.marked = [False for _ in range(G.V)]
         self.dfs(G, s, newValue)
 
-    def dfs(self, G, v, newValue):
-        if self.marked[v]:  # Se já foi visitado, retorna
-            return
-        
-        if G.value[v] != self.sourceValue:  # Se o valor não for igual ao original, não pinta
-            return
-        
-        G.value[v] = newValue  # Pinta com a nova cor
-        self.marked[v] = True
+    def dfs(self, G, s, newValue):
+        stack = [s]
+        while stack:
+            v = stack.pop() 
 
-        for w in G.adj[v]:  # Percorre os vizinhos
-            self.dfs(G, w, newValue) 
+            if self.marked[v]: 
+                continue
+
+            if G.value[v] != self.sourceValue:
+                continue
+
+            G.value[v] = newValue 
+            self.marked[v] = True 
+
+            for w in G.adj[v]:
+                if not self.marked[w]:
+                    stack.append(w)
 
     @staticmethod
     def execute(G, s, newValue):
