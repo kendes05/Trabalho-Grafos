@@ -1,17 +1,6 @@
 from graph import Graph
 from dfs import DepthFirstSearch
-from PIL import Image
-import numpy as np
 
-def read_matrix_from_file(filename):
-    matrix = []
-    
-    with open(filename, 'r') as f:
-        for line in f:
-            row = list(map(int, line.split()))
-            matrix.append(row)
-            
-    return matrix
 
 def create_graph(matrix):
     linhas = len(matrix)
@@ -48,36 +37,33 @@ def print_matrix(matrix):
         print(row)
     print()
 
-def matriz_para_imagem(matriz, mapa_cores):
-    linhas, colunas = len(matriz), len(matriz[0])
-    img = Image.new("RGB", (colunas, linhas))
+matrix = [
+    [1, 1, 1],
+    [0, 0, 0],
+    [0, 0, 1]
+]
 
-    pixels = img.load()
-    for i in range(linhas):
-        for j in range(colunas):
-            pixels[j, i] = mapa_cores.get(matriz[i][j], (0, 0, 0))
+grafo = create_graph(matrix)
 
-    img.show()
+print("Grafo antes da DFS:")
 
-mapa_cores = {
-    0: (0, 0, 255),
-    255: (255, 255, 255),
-    72: (128, 128, 128),        
-}
+print(grafo)
 
+matrix = graph_to_matrix(grafo) # Transforma o grafo em uma matriz para melhor visualização
 
-matrix = read_matrix_from_file("UNIFOR_grayscale.txt")
-#matrix = [[1,1,1],[0,0,0],[0,0,1]]
-g = create_graph(matrix)
+print("\nMatriz antes do DFS:")
 
-#matriz_para_imagem(matrix,mapa_cores)
+print_matrix(matrix)
 
+grafo = DepthFirstSearch.execute(grafo, 0, 2) #Aplicando dfs no vértice de index 0 com valor de origem 2
 
+print("Grafo depois da DFS:")
 
-g = DepthFirstSearch.execute(g,313100,0)
-matrix = graph_to_matrix(g)
+print(grafo)
 
+matrix = graph_to_matrix(grafo)
 
-matriz_para_imagem(matrix,mapa_cores)
+print("\nMatriz depois do DFS:")
 
+print_matrix(matrix)
 
