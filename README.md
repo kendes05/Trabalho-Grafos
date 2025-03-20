@@ -2,14 +2,15 @@
 
 ## Descrição
 
-Este projeto implementa a conversão de uma matriz em um grafo, onde cada célula da matriz é representada como um vértice do grafo. Além disso, foi implementado um algoritmo de busca em profundidade (DFS) que funciona como uma ferramenta "balde de tinta", alterando todos os vértices conectados que possuam o mesmo valor de origem.
+Este projeto implementa a conversão de uma matriz em um grafo, onde cada célula da matriz é representada como um vértice do grafo. Além disso, foi implementado um algoritmo de busca em profundidade (dfs) que funciona como uma ferramenta "balde de tinta", alterando todos os vértices conectados que possuam o mesmo valor de origem.
 
 ## Instalação
 
-Antes de rodar o projeto, certifique-se de instalar a biblioteca `algs4` com o seguinte comando:
+No terminal, escreva o comando abaixo para instalar as bibliotecas necessárias para o funcionamento do projeto:
 
 ```sh
-pip install algs4
+cd Trabalho-Grafos
+pip install -r requirements.txt
 ```
 
 ## Estrutura do Projeto
@@ -22,9 +23,9 @@ O projeto contém as seguintes classes principais:
 
 ## Classe `DepthFirstSearch`
 
-A classe `DepthFirstSearch` executa a busca em profundidade a partir de um vértice inicial, alterando todos os vértices conectados que possuam o mesmo valor de origem.
+A classe `DepthFirstSearch` executa a busca em profundidade a partir de um vértice inicial, alterando todos os vértices conectados que tem o mesmo valor de origem.
 
-### Exemplo de Uso
+### Exemplo
 
 ```python
 from graph import Graph
@@ -51,15 +52,15 @@ print("\nMatriz depois do DFS:")
 print_matrix(matrix)
 ```
 
-## Executando o Projeto
+## Para executar
 
-Para rodar o código de teste, basta executar o arquivo main.py do projeto no terminal:
+Para rodar o código de teste, basta executar o arquivo main.py do projeto no terminal (Veja se você está na pasta que contém os arquivos main.py e trabalho.py):
 
 ```sh
 python main.py
 ```
 
-Para rodar o código do trabalho, basta executar o arquivo trabalho.py no terminal:
+Para rodar o código do trabalho, basta executar o arquivo trabalho.py no terminal (Veja se você está na pasta que contém os arquivos main.py e trabalho.py):
 
 ```sh
 python trabalho.py

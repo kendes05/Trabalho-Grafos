@@ -45,11 +45,7 @@ class Graph:
             self.adj[v] = Bag()
 
     def add_edge(self, index_v, v, index_w, w):
-        if index_v not in self.adj:
-            self.adj[index_v] = Bag()
-        if index_w not in self.adj:
-            self.adj[index_w] = Bag()
-            
+ 
         if index_w not in self.adj[index_v]:
             self.adj[index_v].add(index_w)
             self.adj[index_w].add(index_v)
